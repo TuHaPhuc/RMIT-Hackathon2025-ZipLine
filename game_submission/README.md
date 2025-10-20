@@ -12,11 +12,10 @@
 
 ### Collection of Mini-Games / Bộ sưu tập mini-games
 
-EcoMatch VN hiện bao gồm 3 mini-games tương tác:
+EcoMatch VN hiện bao gồm 2 mini-games tương tác:
 
 1. **🎮 Card Matching** - Trò chơi lật thẻ ghép cặp nguyên nhân-giải pháp
-2. **📝 Quiz Challenge** - Kiểm tra kiến thức với câu hỏi trắc nghiệm do AI tạo
-3. **🗂️ Cause Sorter** - Phân loại nguyên nhân bằng kéo-thả (drag-drop)
+2. **️ Cause Sorter** - Phân loại nguyên nhân bằng kéo-thả (drag-drop)
 
 ### Cách chơi / How to Play
 
@@ -31,13 +30,6 @@ EcoMatch VN hiện bao gồm 3 mini-games tương tác:
 4. **Học hỏi** - Sau mỗi cặp đúng, đọc thông tin giáo dục về ô nhiễm nhựa tại VN
 5. **Hoàn thành** - Ghép đủ 4 cặp để thắng game!
 
-#### Quiz Challenge (Thử Thách Kiến Thức)
-1. **Bắt đầu** - Nhấn "📝 Quiz Challenge"
-2. **AI Generation** - Câu hỏi được tạo bởi GPT-4o-mini API (hoặc sử dụng dữ liệu dự phòng)
-3. **Trả lời** - Chọn đáp án đúng từ 4 lựa chọn
-4. **Học hỏi** - Xem thông tin chi tiết sau mỗi câu hỏi
-5. **Hoàn thành** - Trả lời đủ 5 câu hỏi
-
 #### Cause Sorter (Phân Loại Nguyên Nhân)
 1. **Bắt đầu** - Nhấn "🗂️ Cause Sorter"
 2. **Kéo thả** - Kéo 8 mục vào 3 danh mục:
@@ -50,7 +42,6 @@ EcoMatch VN hiện bao gồm 3 mini-games tương tác:
 ### Tính điểm / Scoring
 
 - **Card Matching**: ✅ +100 điểm/cặp đúng | ❌ -10 điểm/cặp sai | ⏱️ Time bonus
-- **Quiz Challenge**: ✅ +50 điểm/câu đúng (tối đa 250 điểm)
 - **Cause Sorter**: ✅ +20 điểm/mục đúng (tối đa 160 điểm)
 - 💾 **Shared scoring** - Điểm số được lưu trong localStorage và cộng dồn qua các mini-games
 
@@ -67,33 +58,22 @@ Trò chơi này nhằm:
 ### Frontend
 - **HTML5** - 7-page architecture (index, play, quiz, sorter, instructions, about, results)
 - **CSS3** - Advanced styling với animations, responsive design, backdrop filters, drag-drop UI
-- **JavaScript (Vanilla)** - 1000+ lines: game logic, API integration, localStorage
+- **JavaScript (Vanilla)** - 850+ lines: game logic, localStorage management
 - **Bootstrap 5.3.2** - Responsive grid system và utilities
-
-### AI Integration ✨
-- **OpenAI GPT-4o-mini API** - Dynamic content generation
-- **Quiz questions** - AI-generated trắc nghiệm về ô nhiễm nhựa VN
-- **Categorization items** - AI-generated phân loại nguyên nhân
-- **Fallback system** - Static JSON data khi API không khả dụng
 
 ### Features
 - 🌐 **Bilingual Support** - EN/VI language toggle với localStorage persistence
-- 🤖 **AI-Powered Content** - GPT-4o-mini generates dynamic quiz and sorter content
 - 🎨 **Modern UI/UX** - Gradient backgrounds, glass-morphism effects, smooth animations
 - 📱 **Fully Responsive** - Mobile-first design (320px+), tablet, desktop optimized
 - 🎮 **Interactive Elements** - Pill-style language toggle, card flip, drag-drop, modal popups
 - 🗂️ **HTML5 Drag API** - Native drag-and-drop mechanics for Cause Sorter
 - 💾 **Persistent Storage** - Game progress và scores saved via localStorage
+- 🔒 **No Backend Required** - 100% client-side, runs in any browser
 
 ### Assets
-- **Custom illustrations** - AI-generated với detailed prompts (DALL-E, Midjourney)
+- **Custom illustrations** - AI-generated với Gemini Nano/Banana
 - **Background image** - Custom ocean/nature theme với gradient overlay
 - **Card designs** - 8 unique cards (4 causes + 4 solutions)
-
-### ⚠️ Security Note
-- **API Key Exposure**: OpenAI API key được nhúng trong client-side code (`script.js`) cho mục đích demo hackathon
-- **Production Warning**: Trong môi trường production, API key nên được bảo vệ qua backend/serverless function
-- **Fallback System**: Game vẫn hoạt động với static data nếu API key hết hạn hoặc bị giới hạn
 
 ### Không cần cài đặt / No Installation Required
 Trò chơi chạy hoàn toàn trên trình duyệt web, không cần backend hay database.
@@ -122,14 +102,8 @@ cd RMIT-Hackathon2025-ZipLine/game_submission/game_app
 ### Phương pháp 2: Sử dụng Local Server
 
 ```bash
-# Sử dụng Python
-python -m http.server 8000
-
-# Hoặc sử dụng Node.js
-npx http-server
-
-# Sau đó mở trình duyệt và truy cập:
-# http://localhost:8000
+# How to run 
+start index.html 
 ```
 
 ## 📁 Cấu trúc Project / Project Structure
@@ -138,12 +112,13 @@ npx http-server
 game_submission/
 ├── game_app/
 │   ├── index.html              # Main menu page
-│   ├── play.html               # Game play page
+│   ├── play.html               # Card matching game
+│   ├── sorter.html             # Cause sorter drag-drop game
 │   ├── instructions.html       # How to play page
 │   ├── about.html              # About the game page
 │   ├── results.html            # Game results page
-│   ├── style.css               # Complete styling (800+ lines)
-│   ├── script.js               # Game logic (550+ lines)
+│   ├── style.css               # Complete styling (1100+ lines)
+│   ├── script.js               # Game logic (850+ lines)
 │   └── assets/                 # Game assets (10 images)
 │       ├── Background.png      # Ocean/nature background
 │       ├── Card_back.png       # Card back design
@@ -156,18 +131,19 @@ game_submission/
 │       ├── Solution-cards-recycling.png
 │       └── Solution-cards-government-bans.png
 ├── prompts/
-│   ├── concept_prompts.txt                # Game concept & ideation
-│   ├── asset_generation_prompts.txt       # Image generation prompts
-│   ├── code_generation_prompts.txt        # Code implementation prompts
-│   └── refinement_prompts.txt             # Bug fixes & improvements
+│   ├── concept_prompts.txt                # Game concept & ideation (Grok)
+│   ├── asset_generation_prompts.txt       # Image generation (Gemini Nano/Banana)
+│   ├── code_generation_prompts.txt        # Code implementation (ChatGPT-4)
+│   └── refinement_prompts.txt             # Bug fixes & improvements (Claude)
 ├── screenshots/
-│   ├── screenshot1.png - screenshot5.png  # Game screenshots
-│   └── SCREENSHOTS_GUIDE.md               # Screenshot capture guide
+│   ├── menu_screen.png         # Main menu screenshot
+│   ├── play_screen1.png        # Card matching gameplay
+│   ├── play_screen2.png        # Match found modal
+│   ├── play_screen3.png        # Sorter drag-drop
+│   └── results_screen.png      # Game completion
 ├── README.md                   # This file
 ├── project_report.md           # Detailed project report (Markdown)
 ├── project_report.pdf          # PDF version of report
-├── STATUS_AND_NEXT_STEPS.md    # Development status
-├── UPDATE_LOG.md               # Change log
 └── youtube_link.txt            # Link to demo video
 ```
 
@@ -255,7 +231,7 @@ Project này được tạo cho mục đích giáo dục trong RMIT Hackathon 20
 ## 🙏 Acknowledgments
 
 - RMIT University Vietnam - Hackathon 2025
-- AI Tools: ChatGPT, DALL-E, Claude (cho asset generation và code assistance)
+- AI Tools: ChatGPT, Gemini Banana, Claude (cho asset generation và code assistance)
 - Plastic pollution data sources: Vietnam Environment Administration, UN Environment Programme
 
 ---

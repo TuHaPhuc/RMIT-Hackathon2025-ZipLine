@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Game Results - EcoMatch VN">
+    <title>Results - EcoMatch VN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Language Toggle Button -->
+    <div class="lang-toggle-container">
+        <button id="lang-toggle" class="lang-toggle-pill" onclick="toggleLanguage()">
+            <span class="lang-option" data-lang="en">EN</span>
+            <span class="lang-option active" data-lang="vi">VI</span>
+        </button>
+    </div>
+    
+    <div class="container">
+        <h2 id="results-title">🎉 Congratulations!</h2>
+        <div class="content-box results-box">
+            <p id="congrats-message" class="congrats-message">You've completed EcoMatch VN!</p>
+            <div class="results-stats">
+                <div class="stat-item">
+                    <span id="final-score-label" class="stat-label">Final Score</span>
+                    <span id="final-score" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span id="final-time-label" class="stat-label">Time Taken</span>
+                    <span id="final-time" class="stat-value">0:00</span>
+                </div>
+                <div class="stat-item">
+                    <span id="final-matches-label" class="stat-label">Matches</span>
+                    <span id="final-matches" class="stat-value">4/4</span>
+                </div>
+            </div>
+            <p id="impact-message" class="impact-message">
+                🌍 Great job! You've learned 4 important facts about plastic pollution in Vietnam. 
+                Now, take action in your daily life to help reduce plastic waste!
+            </p>
+            <div class="share-message">
+                <p id="share-message">💚 Share your achievement and spread awareness!</p>
+            </div>
+        </div>
+        <div class="button-group">
+            <a href="play.html" class="btn btn-primary">
+                <span id="play-again-btn">🎮 Play Again</span>
+            </a>
+            <a href="index.html" class="btn btn-secondary main-menu-btn">
+                <span>🏠 Main Menu</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('ecomatch_language') || 'en';
+            gameState.currentLanguage = savedLang;
+            updateLanguage();
+            updateLanguageToggle();
+            
+            // Load results from localStorage
+            const results = JSON.parse(localStorage.getItem('ecomatch_results') || '{}');
+            if (results.score !== undefined) {
+                document.getElementById('final-score').textContent = results.score;
+                document.getElementById('final-time').textContent = results.time;
+            }
+        });
+    </script>
+</body>
+</html>

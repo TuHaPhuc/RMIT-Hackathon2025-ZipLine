@@ -1,0 +1,56 @@
+ASSET GENERATION PROMPTS FOR ECOMATCH VN GAME
+==============================================
+
+These prompts were used with Gemini Pro / DALL-E / Stable Diffusion to generate visual assets for the card matching game.
+
+BACKGROUND IMAGE (Already created: Background.png):
+---------------------------------------------------
+Prompt: "Generate a vibrant 2D cartoon background of a polluted river in Vietnam, like the Mekong River, with plastic waste floating in the water. Use colorful greens and blues to maintain an educational and hopeful tone suitable for a learning game. PNG format, 800x600 resolution, bright and engaging colors."
+
+CARD BACK IMAGE (Already created: Card_back.png):
+-------------------------------------------------
+Prompt: "Create a simple card back image for a memory matching game with a blue pattern featuring a Vietnamese eco symbol like a lotus leaf or bamboo. The design should be clean, modern, and suitable for an environmental education game. PNG format, 150x200 pixels, vertical orientation."
+
+CAUSE CARDS (Already created 4 cards):
+--------------------------------------
+1. Single-use Plastic (Cause-cards-single-use-plastic.png):
+   Prompt: "Create a vibrant cartoon icon showing single-use plastic bags and bottles polluting a Vietnamese beach. Show plastic waste scattered on sand with ocean in background. Use bright educational colors, simple 2D style suitable for a game card. PNG, 150x200 pixels, vertical."
+
+2. Industrial Waste (Cause-cards-industrial-waste.png):
+   Prompt: "Create a cartoon icon depicting industrial waste and plastic pollution from factories in Vietnam. Show factory pipes releasing waste into water. Use bright colors but convey the pollution problem clearly. 2D educational game style. PNG, 150x200 pixels, vertical."
+
+3. Littering (Cause-cards-littering.png):
+   Prompt: "Create a cartoon icon showing littering problem in Vietnam with plastic waste on streets and in public spaces. Show scattered bottles, bags, and containers. Bright educational style, 2D cartoon art. PNG, 150x200 pixels, vertical."
+
+4. Fishing Nets (Cause-cards-fishing-nets.png):
+   Prompt: "Create a cartoon icon depicting abandoned fishing nets and marine plastic pollution affecting Vietnamese coastal waters. Show tangled nets with fish or marine life. Bright educational colors, 2D style. PNG, 150x200 pixels, vertical."
+
+SOLUTION CARDS (Need to be created - 4 cards):
+----------------------------------------------
+1. Recycling Program (Solution-cards-recycling.png):
+   Prompt: "Create a vibrant cartoon icon showing people in Vietnam participating in a recycling program, sorting plastic waste into colorful bins. Show happy Vietnamese people working together. Use positive green and blue tones, 2D educational game style. PNG, 150x200 pixels, vertical."
+
+2. Reusable Bags (Solution-cards-reusable-bags.png):
+   Prompt: "Create a cartoon icon showing Vietnamese people using reusable shopping bags instead of plastic bags at a market. Show traditional Vietnamese market setting with people carrying colorful cloth bags. Positive, bright educational style. PNG, 150x200 pixels, vertical."
+
+3. Beach Clean-up Campaign (Solution-cards-cleanup.png):
+   Prompt: "Create a vibrant cartoon icon depicting a community beach clean-up campaign in Vietnam. Show diverse group of volunteers collecting plastic waste on a beautiful Vietnamese beach. Use hopeful, positive colors with greens and blues. 2D educational game style. PNG, 150x200 pixels, vertical."
+
+4. Government Ban (Solution-cards-government-ban.png):
+   Prompt: "Create a cartoon icon representing Vietnam's government ban on single-use plastics. Show a prohibition symbol over plastic bags with Vietnamese flag colors (red and yellow) incorporated. Modern, clean 2D style with educational tone. PNG, 150x200 pixels, vertical."
+
+ADDITIONAL ASSETS (Optional - can be created if needed):
+--------------------------------------------------------
+- Success/Match Icon: "Create a bright green checkmark icon with sparkles for when players match cards correctly in an environmental game. 64x64 pixels, PNG, transparent background."
+
+- Wrong Match Icon: "Create a friendly red X icon for when players don't match cards in an educational game. 64x64 pixels, PNG, transparent background, not too harsh."
+
+- Trophy/Award Icon: "Create a colorful trophy or medal icon for the end screen of an environmental education game. Vietnamese cultural elements optional. 128x128 pixels, PNG, transparent background."
+
+NOTES:
+------
+- All images should be bright, educational, and suitable for ages 12+
+- Use vibrant colors (greens, blues, yellows) to maintain engagement
+- Keep style consistent across all cards (2D cartoon/flat design)
+- Ensure vertical orientation for all cards (150x200 pixels)
+- PNG format with transparent backgrounds where appropriate

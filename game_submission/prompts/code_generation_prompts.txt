@@ -1,0 +1,258 @@
+CODE GENERATION PROMPTS FOR ECOMATCH VN GAME
+=============================================
+
+These prompts were used with Claude 4.5 / ChatGPT / GitHub Copilot to generate the game code.
+
+FULL GAME CODE GENERATION PROMPT:
+----------------------------------
+"Generate complete, production-ready code for a card matching web game called 'EcoMatch VN' about plastic pollution in Vietnam. Requirements:
+
+TECHNICAL CONSTRAINTS:
+- Pure HTML5, CSS3, and vanilla JavaScript only (no frameworks/libraries)
+- Must run entirely in browser (client-side only)
+- Responsive design for mobile and desktop
+- Modern browser compatible (Chrome, Firefox, Safari, Edge)
+
+GAME STRUCTURE:
+- Three main screens: Menu, Instructions/About, and Play
+- Menu screen: Title, tagline, buttons (Play, Instructions, About)
+- Play screen: 4x4 card grid, score display, timer, reset button
+- Instructions: How to play and game objective
+- About: Information about plastic pollution in Vietnam
+
+GAME MECHANICS:
+- 16 cards in 4x4 grid (8 pairs: 4 causes + 4 solutions)
+- Card pairs:
+  1. Single-use plastics ↔ Reusable bags
+  2. Industrial waste ↔ Recycling programs
+  3. Littering ↔ Beach clean-up campaigns
+  4. Fishing nets ↔ Government bans
+- Cards start face-down with card back image
+- Click to flip card with smooth CSS animation
+- Max 2 cards flipped at once
+- If cards match (same pair ID): Keep flipped, show educational pop-up, +10 points
+- If cards don't match: Flip back after 1 second
+- Timer starts on first card flip
+- Game ends when all 8 pairs matched
+- Show final score and time
+
+EDUCATIONAL FACTS (show in pop-up when match):
+Use these 8 facts corresponding to the 8 pairs:
+1. 'Vietnam generates 1.8 million tons of plastic waste annually, ranking among the world's top plastic polluters. Using reusable bags can significantly reduce this impact!'
+2. 'Industrial waste accounts for 40% of plastic pollution in Vietnam. Community recycling programs have already diverted over 500,000 tons from landfills since 2023.'
+3. 'Littering contributes 2.5 million plastic items daily to Vietnamese streets and waterways. Beach clean-up campaigns have removed 1.2 million kg of plastic waste in 2024 alone.'
+4. 'Abandoned fishing nets kill over 100,000 marine animals yearly in Vietnamese waters. The 2025 government ban on single-use plastics is a major step toward cleaner oceans.'
+5. 'Microplastics have been found in 90% of Vietnamese seafood samples tested. Recycling one ton of plastic saves 7.4 cubic yards of landfill space.'
+6. 'Plastic pollution costs Vietnam's tourism industry $500 million annually. Reusable alternatives can reduce household plastic waste by 80%.'
+7. 'The Mekong River carries 40,000 tons of plastic to the ocean each year. Community-led clean-ups have engaged over 2 million Vietnamese citizens since 2023.'
+8. 'Vietnam's single-use plastic ban, effective January 2025, prevents an estimated 100,000 tons of waste annually. Individual action makes a difference!'
+
+VISUAL DESIGN:
+- Color scheme: Vibrant greens (#4CAF50), ocean blues (#2196F3), warning oranges
+- Background: assets/Background.png (polluted river scene)
+- Card back: assets/Card_back.png (lotus leaf design)
+- Card fronts: assets/Cause-cards-[name].png and assets/Solution-cards-[name].png
+- Font: Modern, readable (Arial/Helvetica or similar)
+- Card dimensions: 150px × 200px
+- Grid gap: 15px
+
+ANIMATIONS:
+- Card flip: 3D rotate animation (0.6s ease-in-out)
+- Match success: Scale up briefly with green glow
+- Match fail: Shake animation
+- Screen transitions: Fade in/out (0.3s)
+
+FILE STRUCTURE:
+- index.html: All screens and structure
+- style.css: All styling and animations
+- script.js: All game logic and interactivity
+
+CODE QUALITY:
+- Clean, commented code
+- Semantic HTML5
+- Mobile-first responsive CSS
+- Accessible (ARIA labels, keyboard navigation)
+- No console errors
+- Organized, modular JavaScript
+
+Generate the complete code for all three files with detailed comments."
+
+HTML STRUCTURE PROMPT:
+----------------------
+"Create the HTML structure for EcoMatch VN with:
+- Semantic HTML5 elements
+- Three screen divs: menu-screen, instructions-screen, play-screen
+- Menu screen: h1 title, subtitle, three buttons (Play, Instructions, About)
+- Play screen: score display, timer display, 4×4 card grid container, reset button
+- Instructions modal/screen: rules and objective
+- About modal/screen: information about plastic pollution
+- Educational pop-up modal for facts
+- Results screen/modal for end of game
+- Meta tags for responsive design and SEO
+- Link to external CSS and JS files
+- Alt text for accessibility
+Use assets from assets/ folder for images."
+
+CSS STYLING PROMPT:
+-------------------
+"Create comprehensive CSS for EcoMatch VN including:
+
+LAYOUT:
+- Mobile-first responsive design
+- Flexbox/Grid for centering and layout
+- Menu screen: Centered content with buttons
+- Play screen: Score/timer at top, card grid centered
+- 4×4 card grid using CSS Grid with 15px gap
+
+CARD STYLING:
+- Card dimensions: 150px × 200px
+- Card perspective for 3D flip effect
+- Front and back faces with backface-visibility
+- Card back: background image (assets/Card_back.png)
+- Card front: background image (cause/solution images)
+- Cursor pointer on hover
+- Border-radius for rounded corners
+
+ANIMATIONS:
+- @keyframes for card flip (rotateY 0deg to 180deg)
+- Smooth transitions (0.6s ease-in-out)
+- Match success: scale up + green border glow
+- Match fail: shake animation (keyframes)
+- Screen fade in/out transitions
+- Button hover effects
+
+COLOR SCHEME:
+- Primary: #4CAF50 (green)
+- Secondary: #2196F3 (blue)
+- Accent: #FF9800 (orange)
+- Background: #E8F5E9 (light green) or background image
+- Text: #333 (dark gray)
+- Card shadow: subtle box-shadow
+
+TYPOGRAPHY:
+- Font family: 'Segoe UI', Arial, sans-serif
+- Title: 48px bold
+- Headings: 24px bold
+- Body: 16px
+- Buttons: 18px
+
+RESPONSIVE BREAKPOINTS:
+- Mobile: < 768px (stack cards 2×8)
+- Tablet: 768px - 1024px (cards 3×6 or 4×4)
+- Desktop: > 1024px (cards 4×4)
+
+BUTTONS:
+- Padding, border-radius, hover effects
+- Disabled state styling
+- Active/focus states for accessibility
+
+MODALS:
+- Centered overlay with backdrop
+- Smooth appear/disappear
+- Close button styling"
+
+JAVASCRIPT LOGIC PROMPT:
+------------------------
+"Create the JavaScript logic for EcoMatch VN with the following functions and features:
+
+DATA STRUCTURES:
+- Array of card objects with properties: id (pair ID 1-8), type ('cause' or 'solution'), imagePath, fact
+- Example: {id: 1, type: 'cause', imagePath: 'assets/Cause-cards-single-use-plastic.png', fact: 'Vietnam generates...'}
+- Game state object: score, timeElapsed, flippedCards, matchedPairs, gameStarted, gameEnded
+
+CORE FUNCTIONS:
+1. initGame(): Set up initial state, shuffle cards, render grid
+2. shuffleCards(): Fisher-Yates shuffle algorithm
+3. renderCards(): Create card HTML elements and append to grid
+4. flipCard(event): Handle card click, flip animation
+5. checkMatch(): Compare two flipped cards
+6. handleMatch(): Keep cards flipped, show fact pop-up, update score
+7. handleMismatch(): Flip cards back after delay
+8. updateScore(): Add points and update display
+9. startTimer(): Begin counting seconds
+10. stopTimer(): Stop timer when game ends
+11. showFactPopup(fact): Display educational fact modal
+12. checkGameEnd(): Detect all pairs matched
+13. showResults(): Display final score and time
+14. resetGame(): Clear state and restart
+15. navigateToScreen(screenId): Switch between menu/play/instructions
+
+EVENT LISTENERS:
+- Click on cards (only if < 2 flipped and not already matched)
+- Click on buttons (Play, Instructions, About, Reset, Close modal)
+- Keyboard support (Enter, Escape)
+- Window resize for responsive adjustments
+
+GAME FLOW:
+1. User clicks Play → Hide menu, show play screen
+2. Cards rendered face-down in shuffled order
+3. User clicks first card → Flip, start timer
+4. User clicks second card → Flip
+5. If match → Lock cards, show fact, add score
+6. If no match → Flip back after 1s
+7. Repeat until all matched
+8. Show results screen with score and time
+
+PREVENT BUGS:
+- Disable clicking same card twice
+- Disable clicking more than 2 cards at once
+- Disable clicking already matched cards
+- Clear timeouts properly
+- Validate all user input
+
+CODE ORGANIZATION:
+- Use ES6+ features (const/let, arrow functions, template literals)
+- Comment all functions
+- Separate concerns (data, UI, game logic)
+- No global variable pollution
+- Error handling for missing images
+
+Add these specific cards data:
+[{id:1,type:'cause',img:'assets/Cause-cards-single-use-plastic.png',fact:'Vietnam generates 1.8M tons...'},
+ {id:1,type:'solution',img:'assets/Solution-cards-reusable-bags.png',fact:'same'},
+ ... repeat for pairs 2-8]"
+
+REFINEMENT PROMPTS (used during debugging):
+-------------------------------------------
+These were used to fix issues during development:
+
+"The cards are not flipping back when they don't match. Fix the setTimeout logic in the mismatch handler."
+
+"Add CSS to prevent text selection when clicking cards rapidly."
+
+"The timer is not stopping when the game ends. Fix the stopTimer function."
+
+"Make the educational pop-up modal more visually appealing with better spacing and a semi-transparent backdrop."
+
+"Optimize the card grid for mobile devices - cards are too small on phones. Add responsive breakpoints."
+
+"Add a 'Play Again' button on the results screen that resets the game."
+
+"Prevent the same card from being clicked twice by checking if it's already in the flippedCards array."
+
+"Add smooth transitions when switching between screens instead of instant hide/show."
+
+"The fact pop-up is showing the same text for all matches. Fix the fact assignment in the cards array."
+
+"Add accessibility features: ARIA labels, keyboard navigation, focus indicators."
+
+INTEGRATION PROMPT:
+-------------------
+"Integrate the HTML, CSS, and JavaScript files to create a cohesive, working game:
+- Ensure all image paths are correct (assets/ folder)
+- Link CSS and JS files in HTML properly
+- Test all screen transitions work smoothly
+- Verify all educational facts display correctly
+- Check responsive design on different screen sizes
+- Ensure no console errors
+- Validate HTML/CSS
+- Test game logic thoroughly (matching, scoring, timer)
+- Confirm game is playable from start to finish
+- Add comments explaining integration points"
+
+NOTES:
+------
+- Total lines of code: ~800-1000 (HTML: ~150, CSS: ~400, JS: ~450)
+- Development time with AI assistance: ~90 minutes
+- Main challenges: Card flip 3D animation, state management, responsive grid
+- AI tools used: Claude for logic, ChatGPT for debugging, Copilot for autocomplete

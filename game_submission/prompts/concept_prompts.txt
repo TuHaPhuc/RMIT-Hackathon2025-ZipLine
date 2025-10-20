@@ -1,0 +1,107 @@
+CONCEPT BRAINSTORMING PROMPTS FOR ECOMATCH VN GAME
+===================================================
+
+These prompts were used with Claude 4.5 / ChatGPT / Grok to brainstorm the initial game concept and mechanics.
+
+INITIAL CONCEPT PROMPT:
+-----------------------
+"I need to create an educational web game addressing a social issue in Vietnam for a hackathon. The requirements are:
+- Must be a simple 2D web game using only HTML, CSS, and JavaScript
+- Should address a pressing social challenge in Vietnam
+- Must be engaging, educational, and impactful
+- Should include at least Menu and Play screens
+- Game mechanics should directly connect to the social issue
+
+Can you suggest 3-5 game concepts that would work well? Focus on issues like plastic pollution, climate change, education access, mental health, or social equality. For each concept, briefly describe the game mechanics and how it teaches about the issue."
+
+REFINED CONCEPT PROMPT:
+-----------------------
+"I want to create a card matching game about plastic pollution in Vietnam called 'EcoMatch VN'. The concept is:
+- 4x4 grid of cards (16 cards total, 8 pairs)
+- Each pair consists of a 'cause' card and a 'solution' card related to plastic pollution
+- When players match a correct pair, they see an educational pop-up with real facts about plastic pollution in Vietnam
+- Include scoring system and timer
+
+Can you help me brainstorm:
+1. What are the 4 main causes of plastic pollution in Vietnam? (for cause cards)
+2. What are the 4 main solutions being implemented? (for solution cards)
+3. What educational facts should appear when each pair is matched?
+4. What screens should the game have (Menu, Play, etc.)?
+5. What features would make it more engaging (animations, sounds, etc.)?"
+
+GAME MECHANICS PROMPT:
+----------------------
+"Design the detailed game mechanics for EcoMatch VN:
+- How should the card flipping animation work?
+- What happens when two cards are selected?
+- How to detect if cards match (cause + solution pair)?
+- When should the educational pop-up appear?
+- How to calculate score? (bonus for speed, accuracy, etc.)
+- Should there be difficulty levels or just one mode?
+- What should the win condition be?
+- Should cards auto-shuffle at start?
+Give me a step-by-step flow of how a typical game session works."
+
+EDUCATIONAL CONTENT PROMPT:
+---------------------------
+"Generate 8 educational facts about plastic pollution in Vietnam (as of 2025) that will appear as pop-ups when players match cards. Each fact should:
+- Be concise (1-2 sentences)
+- Include a specific statistic or data point if possible
+- Mention the source (e.g., World Bank, Vietnamese government, research studies)
+- Connect a cause to its solution
+- Be appropriate for ages 12+
+- Be formatted for use in a JavaScript array
+
+Focus on facts about:
+1. Volume of plastic waste in Vietnam
+2. Impact on marine life and rivers (Mekong, etc.)
+3. Health impacts from microplastics
+4. Economic impacts on tourism
+5. Government initiatives and bans
+6. Community recycling programs
+7. Success stories of plastic reduction
+8. Role of individuals in solving the problem"
+
+USER EXPERIENCE PROMPT:
+-----------------------
+"For an educational card matching game about plastic pollution in Vietnam targeting ages 12+, suggest:
+- Color scheme that balances seriousness of pollution with hope for solutions
+- UI/UX design principles to make it engaging but educational
+- Appropriate animations (card flip, match success, match fail)
+- Sound effects or music (if any) - considering it's a web game
+- Typography and layout for readability
+- How to make the educational facts impactful without being preachy
+- Responsive design considerations for mobile and desktop"
+
+SOCIAL IMPACT PROMPT:
+---------------------
+"How can this card matching game create real social impact regarding plastic pollution in Vietnam? Consider:
+- What awareness should players gain after playing?
+- What actions might they take after the game?
+- How to make facts memorable?
+- Should there be a call-to-action at the end?
+- Ideas for sharing results on social media
+- Potential partnerships with environmental NGOs in Vietnam
+- How to measure impact (downloads, shares, surveys, etc.)"
+
+TECHNICAL IMPLEMENTATION PROMPT:
+--------------------------------
+"I need to implement EcoMatch VN using only HTML, CSS, and vanilla JavaScript (no frameworks, must run entirely in browser). Give me a high-level technical architecture:
+- HTML structure (screens, card grid, modals)
+- CSS approach (flexbox/grid for layout, animations)
+- JavaScript logic (card shuffle, match detection, state management)
+- Data structure for cards and facts
+- Event handlers needed
+- Any design patterns to use (MVC, state machine, etc.)
+Keep it simple but scalable for potential future features."
+
+NOTES FROM BRAINSTORMING:
+-------------------------
+- Game name: EcoMatch VN (Vietnam focus on plastic pollution)
+- Target audience: Ages 12-25, students, environmentally conscious citizens
+- Platform: Web browser (desktop and mobile responsive)
+- Duration: 3-7 minutes per game session
+- Educational goal: Raise awareness about plastic pollution causes and practical solutions
+- Engagement: Colorful visuals, smooth animations, immediate feedback
+- Impact: Players learn 8 key facts about Vietnam's plastic crisis
+- Shareability: Display score and encourage sharing on social media

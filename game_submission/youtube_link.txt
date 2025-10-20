@@ -1,0 +1,30 @@
+# YouTube Video Link
+
+## EcoMatch VN - Gameplay Demo Video
+
+**Video URL**: [Paste your YouTube video link here]
+
+Example: https://www.youtube.com/watch?v=your-video-id
+
+---
+
+## Video Information
+
+- **Title**: EcoMatch VN - Educational Game about Plastic Pollution in Vietnam | RMIT Hackathon 2025
+- **Duration**: [Your video duration]
+- **Upload Date**: [Date you uploaded]
+- **Visibility**: Public / Unlisted
+
+---
+
+## Instructions
+
+1. Record gameplay video following the guide in `screenshots/SCREENSHOTS_GUIDE.md`
+2. Upload video to YouTube
+3. Copy the full YouTube URL
+4. Replace the placeholder above with your actual URL
+5. Save this file
+
+---
+
+**Note**: Make sure your video is set to Public or Unlisted visibility so reviewers can access it.

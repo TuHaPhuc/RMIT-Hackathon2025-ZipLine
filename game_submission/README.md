@@ -2,111 +2,115 @@
 
 ![EcoMatch VN](game_app/assets/Background.png)
 
-## 📖 Giới thiệu / Overview
-
-**EcoMatch VN** là một trò chơi lật thẻ giáo dục tập trung vào vấn đề ô nhiễm nhựa tại Việt Nam. Người chơi sẽ ghép cặp các nguyên nhân gây ô nhiễm nhựa với các giải pháp tương ứng, đồng thời học hỏi các sự thật quan trọng về tác động của rác thải nhựa đối với môi trường Việt Nam.
+## 📖 Overview
 
 **EcoMatch VN** is an educational memory card game focused on plastic pollution in Vietnam. Players match causes of plastic pollution with their corresponding solutions while learning important facts about the impact of plastic waste on Vietnam's environment.
 
 ## 🎮 Gameplay
 
-### Collection of Mini-Games / Bộ sưu tập mini-games
+### Collection of Mini-Games
 
-EcoMatch VN hiện bao gồm 2 mini-games tương tác:
+EcoMatch VN features 2 interactive mini-games:
 
-1. **🎮 Card Matching** - Trò chơi lật thẻ ghép cặp nguyên nhân-giải pháp
-2. **️ Cause Sorter** - Phân loại nguyên nhân bằng kéo-thả (drag-drop)
+1. **🎮 Card Matching** - Memory card game matching causes with solutions
+2. **🗂️ Cause Sorter** - Drag-and-drop categorization game
 
-### Cách chơi / How to Play
+### How to Play
 
-#### Card Matching (Ghép Thẻ)
-1. **Bắt đầu trò chơi** - Nhấn nút "🎮 Card Matching" từ menu chính
-2. **Lật thẻ** - Click vào 2 thẻ để lật và xem hình ảnh
-3. **Ghép cặp** - Ghép các nguyên nhân (Cause) với giải pháp (Solution) phù hợp:
+#### Card Matching
+1. **Start Game** - Click "🎮 Card Matching" button from main menu
+2. **Flip Cards** - Click on 2 cards to flip and reveal images
+3. **Match Pairs** - Match causes with appropriate solutions:
    - 🛍️ Single-use plastics ➡️ ♻️ Reusable bags
    - 🗑️ Littering ➡️ 🧹 Clean-up campaigns
    - 🌊 Ocean pollution ➡️ ♻️ Recycling
    - 🏭 Plastic production ➡️ 📜 Government bans
-4. **Học hỏi** - Sau mỗi cặp đúng, đọc thông tin giáo dục về ô nhiễm nhựa tại VN
-5. **Hoàn thành** - Ghép đủ 4 cặp để thắng game!
+4. **Learn** - After each correct match, read educational facts about plastic pollution in Vietnam
+5. **Complete** - Match all 4 pairs to win the game!
 
-#### Cause Sorter (Phân Loại Nguyên Nhân)
-1. **Bắt đầu** - Nhấn "🗂️ Cause Sorter"
-2. **Kéo thả** - Kéo 8 mục vào 3 danh mục:
-   - 🏠 **Sinh Hoạt** (Daily Life) - Túi nilon, chai nước, ống hút
-   - 🏭 **Công Nghiệp** (Industrial) - Bao bì công nghiệp, phế liệu nhà máy
-   - 📋 **Thiếu Quản Lý** (Poor Management) - Rác không phân loại, thiếu thu gom
-3. **Phân loại** - Thả đúng vị trí để ghi điểm (+20/mục)
-4. **Hoàn thành** - Phân loại đủ 8 mục
+#### Cause Sorter
+1. **Start** - Click "🗂️ Cause Sorter" button
+2. **Drag & Drop** - Drag 8 items into 3 categories:
+   - 🏠 **Daily Life** - Plastic bags, water bottles, straws
+   - 🏭 **Industrial** - Industrial packaging, factory waste
+   - 📋 **Poor Management** - Unsorted waste, lack of collection
+3. **Categorize** - Drop items in correct zones to score (+20 per item)
+4. **Complete** - Sort all 8 items correctly
 
-### Tính điểm / Scoring
+### Scoring
 
-- **Card Matching**: ✅ +100 điểm/cặp đúng | ❌ -10 điểm/cặp sai | ⏱️ Time bonus
-- **Cause Sorter**: ✅ +20 điểm/mục đúng (tối đa 160 điểm)
-- 💾 **Shared scoring** - Điểm số được lưu trong localStorage và cộng dồn qua các mini-games
+- **Card Matching**: ✅ +100 points per correct match | ❌ -10 points per wrong match | ⏱️ Time bonus
+- **Cause Sorter**: ✅ +20 points per correct item (maximum 160 points)
+- 💾 **Shared Scoring** - Scores saved in localStorage and accumulated across mini-games
 
-## 🎯 Mục tiêu giáo dục / Educational Goals
+## 🎯 Educational Goals
 
-Trò chơi này nhằm:
-- 🌍 Nâng cao nhận thức về ô nhiễm nhựa tại Việt Nam
-- 📚 Giáo dục về nguyên nhân và giải pháp
-- 💡 Khuyến khích hành động bảo vệ môi trường
-- 🎓 Cung cấp thông tin thống kê thực tế về tình hình rác thải nhựa
+This game aims to:
+- 🌍 Raise awareness about plastic pollution in Vietnam
+- 📚 Educate about causes and solutions
+- 💡 Encourage environmental protection actions
+- 🎓 Provide real statistics about plastic waste situation
 
-## 🛠️ Công nghệ / Technology Stack
+## 🛠️ Technology Stack
 
 ### Frontend
-- **HTML5** - 7-page architecture (index, play, quiz, sorter, instructions, about, results)
-- **CSS3** - Advanced styling với animations, responsive design, backdrop filters, drag-drop UI
+- **HTML5** - 6-page architecture (index, play, sorter, instructions, about, results)
+- **CSS3** - Advanced styling with animations, responsive design, backdrop filters, drag-drop UI
 - **JavaScript (Vanilla)** - 850+ lines: game logic, localStorage management
-- **Bootstrap 5.3.2** - Responsive grid system và utilities
+- **Bootstrap 5.3.2** - Responsive grid system and utilities
 
 ### Features
-- 🌐 **Bilingual Support** - EN/VI language toggle với localStorage persistence
+- 🌐 **Bilingual Support** - EN/VI language toggle with localStorage persistence
 - 🎨 **Modern UI/UX** - Gradient backgrounds, glass-morphism effects, smooth animations
 - 📱 **Fully Responsive** - Mobile-first design (320px+), tablet, desktop optimized
 - 🎮 **Interactive Elements** - Pill-style language toggle, card flip, drag-drop, modal popups
 - 🗂️ **HTML5 Drag API** - Native drag-and-drop mechanics for Cause Sorter
-- 💾 **Persistent Storage** - Game progress và scores saved via localStorage
+- 💾 **Persistent Storage** - Game progress and scores saved via localStorage
 - 🔒 **No Backend Required** - 100% client-side, runs in any browser
 
 ### Assets
-- **Custom illustrations** - AI-generated với Gemini Nano/Banana
-- **Background image** - Custom ocean/nature theme với gradient overlay
-- **Card designs** - 8 unique cards (4 causes + 4 solutions)
+- **Custom Illustrations** - AI-generated with Gemini Nano/Banana
+- **Background Image** - Custom ocean/nature theme with gradient overlay
+- **Card Designs** - 8 unique cards (4 causes + 4 solutions)
 
-### Không cần cài đặt / No Installation Required
-Trò chơi chạy hoàn toàn trên trình duyệt web, không cần backend hay database.
+### No Installation Required
+The game runs entirely in a web browser, no backend or database needed.
 
-## 🚀 Cách chạy game / How to Run
+## 🚀 How to Run
 
-### Phương pháp 1: Mở trực tiếp (Recommended)
+### Method 1: Direct Open (Recommended)
 
-1. Download hoặc clone repository này
-2. Mở file `game_app/index.html` bằng trình duyệt web (Chrome, Firefox, Safari, Edge)
-3. Bắt đầu chơi ngay!
+1. Download or clone this repository
+2. Open `game_app/index.html` file in a web browser (Chrome, Firefox, Safari, Edge)
+3. Start playing immediately!
 
 ```bash
 # Clone repository
 git clone https://github.com/TuHaPhuc/RMIT-Hackathon2025-ZipLine.git
 
-# Mở folder
+# Navigate to folder
 cd RMIT-Hackathon2025-ZipLine/game_submission/game_app
 
-# Mở index.html bằng trình duyệt
+# Open index.html in browser
 # Windows: start index.html
 # Mac: open index.html
 # Linux: xdg-open index.html
 ```
 
-### Phương pháp 2: Sử dụng Local Server
+### Method 2: Using Local Server
 
 ```bash
-# How to run 
-start index.html 
+# Using Python
+python -m http.server 8000
+
+# Or using Node.js
+npx http-server
+
+# Then open browser and navigate to:
+# http://localhost:8000
 ```
 
-## 📁 Cấu trúc Project / Project Structure
+## 📁 Project Structure
 
 ```
 game_submission/
@@ -153,75 +157,75 @@ game_submission/
 - 🔄 Smooth 3D card flip animations (transform: rotateY)
 - ✅ Match success animations with green glow
 - ❌ Mismatch shake animations
-- 🎯 Responsive design cho mobile, tablet & desktop
-- 🎨 Color scheme xanh lá (green) theme - biểu tượng của môi trường
-- 🌊 Background image với gradient overlay
+- 🎯 Responsive design for mobile, tablet & desktop
+- 🎨 Green color scheme theme - symbol of environment
+- 🌊 Background image with gradient overlay
 - ✨ Glass-morphism effects (backdrop-filter: blur)
-- 💫 Hover effects và transitions
+- 💫 Hover effects and transitions
 
 ### 🌐 Multi-Language Support
-- 🇬🇧 English / 🇻🇳 Tiếng Việt
+- 🇬🇧 English / 🇻🇳 Vietnamese
 - 🎛️ Modern pill-style language toggle (green gradient)
 - 💾 Language preference saved in localStorage
-- 📝 Full translations cho tất cả UI elements và educational content
+- 📝 Full translations for all UI elements and educational content
 
 ### 📱 Responsive Design
 - 📱 Mobile (320px+): 2-column card grid
-- � Tablet (768px+): 4-column card grid
-- 💻 Desktop (1024px+): Optimized layout với max-width 900px
-- 🎮 Touch và mouse support
+- 📱 Tablet (768px+): 4-column card grid
+- 💻 Desktop (1024px+): Optimized layout with max-width 900px
+- 🎮 Touch and mouse support
 - 📐 Flexible card sizing (max 160px on desktop, responsive on mobile)
 
 ### 🎯 Game Mechanics
-- ⏱️ Live timer tracking thời gian chơi
+- ⏱️ Live timer tracking play time
 - 📊 Dynamic scoring system (+100 match, -10 wrong)
-- 🎓 Educational modal popups sau mỗi match
-- 🔄 Reset button để chơi lại (fully functional)
-- � Results saved to localStorage
-- 🎮 Visual feedback cho mọi action
+- 🎓 Educational modal popups after each match
+- 🔄 Reset button to replay (fully functional)
+- 💾 Results saved to localStorage
+- 🎮 Visual feedback for every action
 
 ## 📊 Educational Content
 
-Game cung cấp 4 thông tin quan trọng về ô nhiễm nhựa tại Việt Nam:
+The game provides 4 important facts about plastic pollution in Vietnam:
 
-1. **Thống kê rác thải**: 1.8 triệu tấn/năm, chỉ 27% được tái chế
-2. **Túi nilon**: 40 tỷ túi/năm, phân hủy mất 400-1000 năm
-3. **Lợi ích tái chế**: Tiết kiệm năng lượng và tài nguyên
-4. **Tác động sinh vật biển**: 100,000 sinh vật chết/năm
+1. **Waste Statistics**: 1.8 million tons per year, only 27% recycled
+2. **Plastic Bags**: 40 billion bags per year, takes 400-1000 years to decompose
+3. **Recycling Benefits**: Saves energy and resources
+4. **Marine Life Impact**: 100,000 marine animals die annually
 
 ## 🎥 Demo & Screenshots
 
-- 📺 Video demo: [Link trong youtube_link.txt]
-- 🖼️ Screenshots: Xem folder `screenshots/`
+- 📺 Video demo: [Link in youtube_link.txt]
+- 🖼️ Screenshots: See `screenshots/` folder
 
 ## 👨‍💻 Development Process
 
-Game được phát triển qua các bước:
+The game was developed through these phases:
 
-1. **Concept Development** - Brainstorm ý tưởng về plastic pollution
-2. **Asset Generation** - Tạo hình ảnh với AI tools
-3. **Code Implementation** - Xây dựng game logic
-4. **Testing & Refinement** - Test và tối ưu hóa
-5. **Documentation** - Viết docs và report
+1. **Concept Development** - Brainstorming ideas about plastic pollution
+2. **Asset Generation** - Creating images with AI tools
+3. **Code Implementation** - Building game logic
+4. **Testing & Refinement** - Testing and optimization
+5. **Documentation** - Writing docs and reports
 
 ## 🌟 Key Learning Outcomes
 
-Sau khi chơi game, người chơi sẽ:
-- ✅ Hiểu rõ hơn về tình trạng ô nhiễm nhựa tại Việt Nam
-- ✅ Nhận biết được các nguyên nhân chính
-- ✅ Biết các giải pháp thực tế có thể áp dụng
-- ✅ Có động lực thay đổi hành vi tiêu dùng nhựa
+After playing the game, players will:
+- ✅ Better understand plastic pollution situation in Vietnam
+- ✅ Recognize main causes
+- ✅ Know practical solutions that can be applied
+- ✅ Have motivation to change plastic consumption behavior
 
 ## 🤝 Contributing
 
-Đây là project cho RMIT Hackathon 2025. Nếu bạn muốn đóng góp:
-- 🐛 Report bugs qua GitHub Issues
-- 💡 Suggest features hoặc improvements
-- 🎨 Contribute assets hoặc educational content
+This is a project for RMIT Hackathon 2025. If you want to contribute:
+- 🐛 Report bugs via GitHub Issues
+- 💡 Suggest features or improvements
+- 🎨 Contribute assets or educational content
 
 ## 📝 License
 
-Project này được tạo cho mục đích giáo dục trong RMIT Hackathon 2025.
+This project was created for educational purposes in RMIT Hackathon 2025.
 
 ## 📧 Contact
 
@@ -231,9 +235,9 @@ Project này được tạo cho mục đích giáo dục trong RMIT Hackathon 20
 ## 🙏 Acknowledgments
 
 - RMIT University Vietnam - Hackathon 2025
-- AI Tools: ChatGPT, Gemini Banana, Claude (cho asset generation và code assistance)
+- AI Tools: Grok (xAI), Gemini Nano/Banana, ChatGPT-4, Claude (for asset generation and code assistance)
 - Plastic pollution data sources: Vietnam Environment Administration, UN Environment Programme
 
 ---
 
-**🌱 Hãy cùng nhau bảo vệ môi trường! Let's protect our environment together!**
+**🌱 Let's protect our environment together!**

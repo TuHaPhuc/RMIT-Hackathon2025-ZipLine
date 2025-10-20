@@ -19,6 +19,7 @@ const translations = {
         gameTitle: "🌊 EcoMatch VN ♻️",
         gameSubtitle: "Match cards to learn about plastic pollution in Vietnam",
         playGame: "▶ Play Game",
+        causeSorter: "🗂️ Cause Sorter",
         howToPlay: "📖 How to Play",
         about: "ℹ️ About",
         
@@ -68,13 +69,27 @@ const translations = {
         
         // Modal
         matchFound: "✓ Match Found!",
-        continue: "Continue"
+        continue: "Continue",
+        
+        // Sorter
+        sorterTitle: "🗂️ Cause Sorter",
+        sorterScoreLabel: "Score:",
+        sorterProgressLabel: "Sorted:",
+        sorterInstruction: "Drag items to the correct category!",
+        sorterReset: "🔄 Reset",
+        sorterBack: "🏠 Main Menu",
+        correct: "✓ Correct!",
+        incorrect: "✗ Incorrect",
+        wrongCategory: "Wrong category. Correct:",
+        completed: "🎉 Completed!",
+        completedMessage: "Great job! You've sorted all items correctly. Final score:"
     },
     vi: {
         // Menu Screen
         gameTitle: "🌊 EcoMatch VN ♻️",
         gameSubtitle: "Ghép thẻ để học về ô nhiễm nhựa tại Việt Nam",
         playGame: "▶ Chơi Ngay",
+        causeSorter: "🗂️ Phân Loại Nguyên Nhân",
         howToPlay: "📖 Hướng Dẫn",
         about: "ℹ️ Giới Thiệu",
         
@@ -124,7 +139,20 @@ const translations = {
         
         // Modal
         matchFound: "✓ Tìm Thấy Cặp!",
-        continue: "Tiếp Tục"
+        continue: "Tiếp Tục",
+        
+        // Sorter
+        sorterTitle: "🗂️ Phân Loại Nguyên Nhân",
+        sorterScoreLabel: "Điểm:",
+        sorterProgressLabel: "Đã phân loại:",
+        sorterInstruction: "Kéo các mục vào đúng danh mục!",
+        sorterReset: "🔄 Chơi Lại",
+        sorterBack: "🏠 Về Menu",
+        correct: "✓ Đúng rồi!",
+        incorrect: "✗ Chưa đúng",
+        wrongCategory: "Sai danh mục. Đúng:",
+        completed: "🎉 Hoàn thành!",
+        completedMessage: "Tuyệt vời! Bạn đã phân loại đúng tất cả. Điểm cuối:"
     }
 };
 
@@ -180,11 +208,19 @@ const educationalFacts = {
     ]
 };
 
+
+
 // Initialize game
 function init() {
-    showScreen('menu-screen');
-    setupEventListeners();
-    updateLanguage(); // Set initial language
+    // Check if we're on the main index page or a separate page
+    const menuScreen = document.getElementById('menu-screen');
+    if (menuScreen) {
+        // We're on the main index page
+        showScreen('menu-screen');
+        setupEventListeners();
+    }
+    // Always update language regardless of which page we're on
+    updateLanguage();
 }
 
 // Setup event listeners
@@ -199,6 +235,12 @@ function toggleLanguage() {
     localStorage.setItem('ecomatch_language', gameState.currentLanguage);
     updateLanguage();
     updateLanguageToggle();
+    
+    // Reload sorter if on sorter page
+    const sorterContainer = document.getElementById('sorter-container');
+    if (sorterContainer && sorterContainer.children.length > 0) {
+        startSorter();
+    }
 }
 
 function updateLanguageToggle() {
@@ -221,6 +263,7 @@ function updateLanguage() {
     updateElement('game-title', t.gameTitle);
     updateElement('game-subtitle', t.gameSubtitle);
     updateElement('btn-play', t.playGame);
+    updateElement('btn-sorter', t.causeSorter);
     updateElement('btn-instructions', t.howToPlay);
     updateElement('btn-about', t.about);
     
@@ -272,6 +315,14 @@ function updateLanguage() {
     // Modal
     updateElement('modal-title', t.matchFound);
     updateElement('modal-continue', t.continue);
+    
+    // Sorter
+    updateElement('sorter-title', t.sorterTitle);
+    updateElement('sorter-score-label', t.sorterScoreLabel);
+    updateElement('sorter-progress-label', t.sorterProgressLabel);
+    updateElement('sorter-instruction-text', t.sorterInstruction);
+    updateElement('sorter-reset', t.sorterReset);
+    updateElement('sorter-back', t.sorterBack);
 }
 
 function updateElement(id, text) {
@@ -307,12 +358,27 @@ function showScreen(screenId) {
 
 // Start game
 function startGame() {
-    resetGame();
+    // Stop any existing timer first
+    stopTimer();
+    
+    // Reset game state
+    gameState.cards = [];
+    gameState.flippedCards = [];
+    gameState.matchedPairs = 0;
+    gameState.score = 0;
+    gameState.timer = 0;
+    gameState.gameStarted = false;
+    
+    updateScore();
+    updateMatches();
+    updateTimer();
+    
     // Only show screen if we're on a single-page app, not on play.html
     const playScreen = document.getElementById('play-screen');
     if (playScreen) {
         showScreen('play-screen');
     }
+    
     initializeCards();
     startTimer();
     gameState.gameStarted = true;
@@ -462,6 +528,9 @@ function closeFactModal() {
 
 // Timer functions
 function startTimer() {
+    // Clear any existing timer first to prevent multiple intervals
+    stopTimer();
+    
     gameState.timer = 0;
     updateTimer();
     gameState.timerInterval = setInterval(() => {
@@ -563,3 +632,236 @@ function shuffleArray(array) {
 
 // Initialize game when DOM is loaded
 document.addEventListener('DOMContentLoaded', init);
+
+// ========== SORTER FUNCTIONS ==========
+
+// Sorter game state
+const sorterState = {
+    score: 0,
+    sortedCount: 0,
+    totalItems: 8
+};
+
+// Start sorter game
+function startSorter() {
+    // Static data từ research (không dùng GPT)
+    const sorterData = {
+        categories: {
+            en: ['Daily Use', 'Industrial', 'Poor Management'],
+            vi: ['Sinh Hoạt', 'Công Nghiệp', 'Thiếu Quản Lý']
+        },
+        items: {
+            en: [
+                {id: 'item1', text: 'Single-use plastic bags', category: 'Daily Use', fact: 'Accounts for 7-8% of daily waste in Hanoi, with 40 billion bags/year from consumer habits (UNDP 2024).'},
+                {id: 'item2', text: 'Styrofoam food containers', category: 'Daily Use', fact: 'Throwaway culture from urban population generates 4,000-5,000 tons of waste/day, plastic占a large portion (ResearchGate 2025).'},
+                {id: 'item3', text: 'Plastic beverage bottles', category: 'Daily Use', fact: 'Widespread daily use contributes to 1.8 million tons of plastic/year (Vietcetera).'},
+                {id: 'item4', text: 'Industrial plastic production', category: 'Industrial', fact: 'Upsurge in production generates 1.8 million tons/year, mainly from factories (UNDP 2024).'},
+                {id: 'item5', text: 'Plastic waste imports for recycling', category: 'Industrial', fact: 'Large imports but outdated technology causes high pollution (ResearchGate 2024).'},
+                {id: 'item6', text: 'Ineffective recycling', category: 'Industrial', fact: 'Only 11-12% of plastic is recycled, low technology leads to high costs (Trade.gov 2024).'},
+                {id: 'item7', text: 'Untreated landfills', category: 'Poor Management', fact: '85% of waste is landfilled without treatment, causing soil and ocean pollution (ICLEI 2022).'},
+                {id: 'item8', text: 'Weak regulations', category: 'Poor Management', fact: '90% of ocean waste from land due to poor management, waste will double in 15 years (Trade.gov 2024).'}
+            ],
+            vi: [
+                {id: 'item1', text: 'Túi nylon dùng một lần', category: 'Sinh Hoạt', fact: 'Chiếm 7-8% rác hàng ngày ở Hà Nội, với 40 tỷ túi/năm từ thói quen tiêu dùng (UNDP 2024).'},
+                {id: 'item2', text: 'Hộp xốp thực phẩm', category: 'Sinh Hoạt', fact: 'Throwaway culture từ dân đô thị thải 4,000-5,000 tấn rác/ngày, nhựa chiếm lớn (ResearchGate 2025).'},
+                {id: 'item3', text: 'Chai nhựa nước uống', category: 'Sinh Hoạt', fact: 'Sử dụng phổ biến hàng ngày góp phần vào 1.8 triệu tấn nhựa/năm (Vietcetera).'},
+                {id: 'item4', text: 'Sản xuất nhựa công nghiệp', category: 'Công Nghiệp', fact: 'Sản xuất tăng vọt thải 1.8 triệu tấn/năm, chủ yếu từ nhà máy (UNDP 2024).'},
+                {id: 'item5', text: 'Nhập khẩu rác nhựa tái chế', category: 'Công Nghiệp', fact: 'Nhập khẩu lớn nhưng công nghệ lỗi thời gây ô nhiễm cao (ResearchGate 2024).'},
+                {id: 'item6', text: 'Thiếu tái chế hiệu quả', category: 'Công Nghiệp', fact: 'Chỉ 11-12% nhựa tái chế, công nghệ thấp dẫn đến chi phí cao (Trade.gov 2024).'},
+                {id: 'item7', text: 'Chôn lấp không xử lý', category: 'Thiếu Quản Lý', fact: '85% rác chôn lấp không xử lý, gây ô nhiễm đất và biển (ICLEI 2022).'},
+                {id: 'item8', text: 'Quy định yếu kém', category: 'Thiếu Quản Lý', fact: '90% rác biển từ đất liền do quản lý kém, rác thải gấp đôi trong 15 năm (Trade.gov 2024).'}
+            ]
+        }
+    };
+
+    const lang = gameState.currentLanguage;
+    const categories = sorterData.categories[lang];
+    const items = sorterData.items[lang];
+    
+    // Clear container
+    const sorterContainer = document.getElementById('sorter-container');
+    sorterContainer.innerHTML = '';
+    
+    // Create drop zones container
+    const zonesContainer = document.createElement('div');
+    zonesContainer.classList.add('drop-zones');
+    
+    // Create drop zones
+    categories.forEach(cat => {
+        const zone = document.createElement('div');
+        zone.id = cat.replace(/\s+/g, '-').toLowerCase(); // ID dạng 'daily-use'
+        zone.classList.add('drop-zone');
+        zone.innerHTML = `<h3>${cat}</h3>`;
+        zone.ondrop = dropItem;
+        zone.ondragover = allowDrop;
+        zone.ondragleave = dragLeave;
+        zone.ondragenter = dragEnter;
+        zonesContainer.appendChild(zone);
+    });
+    
+    sorterContainer.appendChild(zonesContainer);
+    
+    // Create draggable items container
+    const itemsDiv = document.createElement('div');
+    itemsDiv.id = 'items-list';
+    
+    // Shuffle items
+    const shuffledItems = shuffleArray([...items]);
+    
+    shuffledItems.forEach(item => {
+        const el = document.createElement('div');
+        el.id = item.id;
+        el.draggable = true;
+        el.textContent = item.text;
+        el.classList.add('draggable-item');
+        el.dataset.category = item.category;
+        el.dataset.categoryId = item.category.replace(/\s+/g, '-').toLowerCase();
+        el.dataset.fact = item.fact;
+        el.ondragstart = dragItem;
+        el.ondragend = dragEnd;
+        itemsDiv.appendChild(el);
+    });
+    
+    sorterContainer.appendChild(itemsDiv);
+    
+    // Reset score
+    sorterState.score = 0;
+    sorterState.sortedCount = 0;
+    updateSorterScore();
+}
+
+function allowDrop(ev) { 
+    ev.preventDefault(); 
+}
+
+function dragEnter(ev) {
+    if (ev.target.classList.contains('drop-zone')) {
+        ev.target.classList.add('drag-over');
+    }
+}
+
+function dragLeave(ev) {
+    if (ev.target.classList.contains('drop-zone')) {
+        ev.target.classList.remove('drag-over');
+    }
+}
+
+function dragItem(ev) { 
+    ev.dataTransfer.setData('text', ev.target.id);
+    ev.target.classList.add('dragging');
+}
+
+function dragEnd(ev) {
+    ev.target.classList.remove('dragging');
+    // Remove drag-over from all zones
+    document.querySelectorAll('.drop-zone').forEach(zone => {
+        zone.classList.remove('drag-over');
+    });
+}
+
+function dropItem(ev) {
+    ev.preventDefault();
+    const itemId = ev.dataTransfer.getData('text');
+    const item = document.getElementById(itemId);
+    
+    if (!item) return;
+    
+    // Remove drag-over class
+    ev.target.classList.remove('drag-over');
+    
+    // Get the drop zone (handle if dropped on child element)
+    let dropZone = ev.target;
+    if (!dropZone.classList.contains('drop-zone')) {
+        dropZone = dropZone.closest('.drop-zone');
+    }
+    
+    if (!dropZone) return;
+    
+    // Check if correct
+    const isCorrect = dropZone.id === item.dataset.categoryId;
+    
+    const lang = gameState.currentLanguage;
+    const t = translations[lang];
+    
+    if (isCorrect) {
+        // Correct placement
+        sorterState.score += 20;
+        sorterState.sortedCount++;
+        updateSorterScore();
+        
+        // Move item to zone
+        dropZone.appendChild(item);
+        item.classList.add('placed');
+        item.draggable = false; // Prevent further dragging
+        
+        showSorterModal(t.correct, item.dataset.fact, true);
+        
+        // Check if all items are sorted
+        if (sorterState.sortedCount === sorterState.totalItems) {
+            setTimeout(() => {
+                const completeMsg = `${t.completedMessage} ${sorterState.score}`;
+                showSorterModal(t.completed, completeMsg, true);
+            }, 1500);
+        }
+    } else {
+        // Wrong placement - return to items list
+        const itemsList = document.getElementById('items-list');
+        if (itemsList) {
+            itemsList.appendChild(item);
+        }
+        
+        const message = `${t.wrongCategory} ${item.dataset.category}. ${item.dataset.fact}`;
+        showSorterModal(t.incorrect, message, false);
+    }
+}
+
+function showSorterModal(title, message, isCorrect) {
+    const modal = document.getElementById('resultModal');
+    const titleEl = document.getElementById('modal-title');
+    const messageEl = document.getElementById('modal-message');
+    const continueBtn = document.getElementById('modal-continue');
+    
+    titleEl.textContent = title;
+    titleEl.style.color = isCorrect ? '#4caf50' : '#f44336';
+    messageEl.textContent = message;
+    
+    // Update continue button text
+    const lang = gameState.currentLanguage;
+    const t = translations[lang];
+    continueBtn.textContent = t.continue;
+    
+    // Show modal without backdrop
+    modal.classList.add('show');
+    modal.style.display = 'block';
+    modal.removeAttribute('aria-hidden');
+    document.body.classList.add('modal-open');
+    
+    // Focus on the continue button
+    setTimeout(() => {
+        continueBtn.focus();
+    }, 100);
+}
+
+function closeSorterModal() {
+    const modal = document.getElementById('resultModal');
+    const bsModal = bootstrap.Modal.getInstance(modal);
+    if (bsModal) {
+        bsModal.hide();
+    }
+}
+
+function updateSorterScore() {
+    const scoreEl = document.getElementById('sorter-score');
+    const countEl = document.getElementById('sorted-count');
+    
+    if (scoreEl) {
+        scoreEl.textContent = sorterState.score;
+    }
+    if (countEl) {
+        countEl.textContent = `${sorterState.sortedCount}/${sorterState.totalItems}`;
+    }
+}
+
+function resetSorter() {
+    startSorter();
+}
